@@ -3,7 +3,8 @@
 
 import binascii
 import base64
-
+from werkzeug.utils import redirect
+import io
 from odoo import fields, http, SUPERUSER_ID, _
 from odoo.exceptions import AccessError, MissingError, ValidationError
 from odoo.fields import Command
@@ -209,4 +210,28 @@ class DeveloperPortal(http.Controller):
         })
 
         return request.render("portal_user_to_developer.time_off_done")
+
+    @http.route(['/attachment/download', ], type='http', auth='public')
+    def download_attachment(self, attachment_id):
+        print('jjjjjjjjjj')
+        # Check if this is a valid attachment id
+        attachment = request.env['ir.attachment'].sudo().search(
+            [('id', '=', int(attachment_id))])
+
+        if attachment:
+            attachment = attachment[0]
+        else:
+            return redirect('/shop')
+
+        if attachment["type"] == "url":
+            if attachment["url"]:
+                return redirect(attachment["url"])
+            else:
+                return request.not_found()
+        elif attachment["datas"]:
+            data = io.BytesIO(base64.standard_b64decode(attachment["datas"]))
+            return http.send_file(data, filename=attachment['name'],
+                                  as_attachment=True)
+        else:
+            return request.not_found()
 

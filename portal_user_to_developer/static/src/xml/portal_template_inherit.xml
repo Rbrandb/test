@@ -170,10 +170,7 @@
                         <div class="col-6">
                             <t t-if="document">
                                 <t t-foreach="document" t-as="document">
-                                    <a t-attf-href="/web/content/#{document.id}?download=true"
-                                       class="no-decoration"
-                                       data-no-post-process=""
-                                       target="_blank">
+                                    <a t-att-href="'/attachment/download?attachment_id=%i' % document.id">
                                         <div style="width:80px;">
                                             <div class='text-center oe_attachment_embedded o_image img-responsive'
                                                  style="margin-bottom:-21px; width:81; height:112;"
