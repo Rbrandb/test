@@ -55,7 +55,7 @@ class DeveloperPortal(http.Controller):
             ('attachment', '!=', False)])
 
         document_url = time_ff.attachment
-        return request.render("portal_user_to_developer.viewlogs", {'document': document_url})
+        return request.render("portal_user_to_developer.my_payslip_template", {'document': document_id})
 
     @http.route(['/to_submit', '/to_submit/page/<int:page>'], type='http', auth="user", website=True)
     def portal_to_submit(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
