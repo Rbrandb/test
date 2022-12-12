@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_avware_unitsss" name="Show Avware Unit Orders" customize_show="True"
+              inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Signatures11</t>
+                <t t-set="url" t-value="'/my/signatures'"/>
+                <t t-set="placeholder_count" t-value="'1'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_time_off_details">
+        <t t-call="website.layout">
+            <div class="row">
+                <div class="col-6">
+                    <div class="text-center">
+                        <h3>MY TIME OFF</h3>
+                    </div>
+                    <table class="time_off_table" style="margin-top:10px; width:100%; margin-left:20px;"
+                           id="hash_config_table">
+                        <thead style="display: table-row-group; background-color:#8DB2D7; border: 0.3rem solid #8DB2D7;
+                        border-bottom: none;">
+                            <tr>
+                                <th class="" style="width: 30%; color: white;" scope="col">
+                                    Start date
+                                </th>
+                                <th class="" style="width: 20%; color: white;" scope="col">
+                                    End date
+                                </th>
+                                <th class="" style="width: 30%; color: white;" scope="col">
+                                    Time off type
+                                </th>
+                                <th class="" style="width: 20%; color: white;" scope="col">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <t t-call="portal_user_to_developer.portal_my_orders">
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="portal_my_orders">
+        <!--        <t t-call="website.layout">-->
+        <section class='dd'>
+            <form action="/magento/submits">
+                <div class="cover">
+                    <h3 class="text-center">REQUEST NEW TIME OFF
+                    </h3>
+                    <div class="selection" style="position: absolute; left: 149mm; top: 21mm;">
+                        <label for="cars">Time off type:</label>
+                        <select id="time_off_type" name="time_off_type">
+                            <!--                        <option value="volvo">Paid time off</option>-->
+                            <!--                        <option value="saab">Unpaid</option>-->
+                            <!--                        <option value="opel">Sick Time off</option>-->
+                        </select>
+                    </div>
+                    <div class="form__group field"
+                         style="position: absolute; right: 143mm; font-weight: bold; top:21mm;">
+                        From :
+                        <!--                        <input type="password" class="form__field" placeholder="Access Token....." name="token"-->
+                        <!--                               id='name' required="required"></input>-->
+                        <input type="date" id="date_from" name="start date" required="required"></input>
+                        To :
+                        <input type="date" id="date_to" name="to date" required="required"></input>
+                    </div>
+                    <div class="text-center" style="  padding-top: 19mm;">
+                        Description
+                        :
+                        <input type="text" class="o_input" id="description" name="description"
+                               style="width:88mm; height:20mm;"/>
+
+                        <!--                        <input type="input" class="form__field" placeholder="Magento Host....." name="host"-->
+                        <!--                               id='name' required="required"></input>-->
+                    </div>
+                    <div class="text-center" style="padding-top:10mm;">
+                        <button class="button-40" id="button-40">SUBMIT
+                        </button>
+                    </div>
+                    <div>
+                        <div class="icon-button" style="position: absolute; right: 30mm;bottom: -60mm;">
+                            <!--                            <a role="menuitem" t-attf-href="/web#menu_id=#{ask}">-->
+                            <a role="menuitem" t-attf-href="/web">
+                                <i class="fa fa-play"></i>
+                                Skip >>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </template>
+</odoo>
+
+
