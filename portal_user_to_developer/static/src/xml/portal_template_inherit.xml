@@ -46,7 +46,7 @@
 
     <template id="portal_my_orders">
         <section class='dd'>
-            <form action="/magento/submits" enctype="multipart/form-data" method="post">
+            <form action="/timeoff/submits" enctype="multipart/form-data" method="post">
                 <div class="cover">
                     <h3 class="" style="padding-left: 8mm; padding-top:2mm;">EMPLOYEE REQUEST
                     </h3>

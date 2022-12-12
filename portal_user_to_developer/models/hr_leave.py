@@ -10,7 +10,6 @@ class HrLeave(models.Model):
     @api.constrains('state')
     def _onchange_state(self):
         self.ensure_one()
-        print('gggggggggggggggggg', self.supported_attachment_ids)
         portal_time_off = self.env['portal.time.off'].search([('hr_leave_id', '=', self.id)])
         if portal_time_off:
             portal_time_off.state = self.state

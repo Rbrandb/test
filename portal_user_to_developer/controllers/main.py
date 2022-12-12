@@ -158,14 +158,13 @@ class DeveloperPortal(http.Controller):
         }
         return request.render("portal_user_to_developer.my_time_off_details", values)
 
-    @http.route('/magento/submits', website=True, auth='user', csrf=False)
+    @http.route('/timeoff/submits', website=True, auth='user', csrf=False)
     def submit_magento(self, **kwargs):
         empolyee = request.env['employee.hub'].sudo().search([
             ('portal_user_id', '=', request.uid)])
         # print(empolyee)
         user_id = request.env['res.users'].sudo().search([
             ('employee_responsible', '=', True)])
-        print('user_id',user_id)
         if not empolyee:
             raise ValidationError(_('Employee not linked to user'))
         d1 = datetime.strptime(kwargs.get('start date'), '%Y-%m-%d')
@@ -186,7 +185,6 @@ class DeveloperPortal(http.Controller):
         Attachments = request.env['ir.attachment']
         # post.get('attachment').filename/
         name = kwargs.get('myfile').filename
-        print(name,"tttttttttttttt")
         file = kwargs.get('myfile')
 
         attachment_id = Attachments.sudo().create({
@@ -213,7 +211,6 @@ class DeveloperPortal(http.Controller):
 
     @http.route(['/attachment/download', ], type='http', auth='public')
     def download_attachment(self, attachment_id):
-        print('jjjjjjjjjj')
         # Check if this is a valid attachment id
         attachment = request.env['ir.attachment'].sudo().search(
             [('id', '=', int(attachment_id))])

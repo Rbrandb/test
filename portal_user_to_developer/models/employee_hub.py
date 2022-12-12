@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 
 class EmployeeHub(models.Model):
     _name = 'employee.hub'
+    _rec_name = 'employee_id'
 
     portal_user_id = fields.Many2one('res.users', 'Portal user', required=True, domain=[('partner_share', '=', True)])
     employee_id = fields.Many2one('hr.employee', 'employee', required=True)
@@ -21,7 +22,6 @@ class EmployeeHub(models.Model):
 
     @api.model
     def create(self, vals):
-        print("vals", vals)
         types = self.env['hr.leave.type'].search([])
         time_off = self.env['time.off.type'].search([])
         if not time_off:

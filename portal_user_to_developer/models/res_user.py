@@ -15,12 +15,8 @@ class ResUserInherit(models.Model):
     @api.onchange('employee_responsible')
     def _onchange_employee_responsible(self):
         employee_responsible = self.env['res.users'].search([('employee_responsible', '=', True)])
-        print('employee_responsible', employee_responsible)
         employee_ = self.env['res.users'].search([])
-        for rec in employee_:
-            print(rec.name, rec.partner_share)
         if employee_responsible:
-            print(employee_responsible.partner_share)
             raise ValidationError(_('Already a user have assigned employee responsible'))
 
 

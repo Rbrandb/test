@@ -12,9 +12,7 @@ class TimeOffType(models.Model):
 
     @api.model
     def get_time_of_types(self):
-        print(self.env.uid)
         t_type = self.env['time.off.type'].search([])
-        print('time_off_types', t_type)
         types = []
         for rec in t_type:
             types.append({
@@ -22,9 +20,7 @@ class TimeOffType(models.Model):
                 'id': rec.id
             })
         employee = self.env['employee.hub'].search([('portal_user_id', '=', self.env.uid)])
-        print('employee', employee)
         portal_time_off = self.env['portal.time.off'].search([('employee_id', '=', employee.employee_id.id)])
-        print('portal_time_off', portal_time_off)
         my_time_off = {}
         draft = len(portal_time_off.filtered(lambda r: r.state == 'draft'))
         if draft != 0:

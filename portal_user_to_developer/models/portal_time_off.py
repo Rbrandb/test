@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 class EmployeeHub(models.Model):
     _name = 'portal.time.off'
+    _rec_name = 'time_off_type'
 
     time_off_type = fields.Many2one('time.off.type', 'Time off type', required=True)
     employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
@@ -48,12 +49,10 @@ class EmployeeHub(models.Model):
             d1 = datetime.strptime(str(self.request_date_from), '%Y-%m-%d')
             d2 = datetime.strptime(str(self.request_date_to), '%Y-%m-%d')
             d3 = d2 - d1
-            print('d3', d3)
             self.number_of_days = int(d3.days)
 
     @api.model
     def create(self, vals):
-        print("vals", vals)
         res = super(EmployeeHub, self).create(vals)
         return res
 

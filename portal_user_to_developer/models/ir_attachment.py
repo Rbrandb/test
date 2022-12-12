@@ -8,5 +8,5 @@ class Attachment(models.Model):
 
     _inherit = 'ir.attachment'
 
-    attach_rel = fields.Many2many('portal.time.off', 'attachment', 'attachment_id3', 'document_id',string="Attachment", invisible=1 )
+    attach_rel = fields.Many2many('portal.time.off', 'attachment', 'attachment_id3', 'document_id', string="Attachment", invisible=1 )
 

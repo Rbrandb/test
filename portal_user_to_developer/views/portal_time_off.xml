@@ -36,25 +36,7 @@
                             <field name="attachment" widget="many2many_binary" class="oe_inline"/>
                         </group>
                     </group>
-<!--                    <notebook>-->
-<!--                        <page string="Order line">-->
-<!--                            <field name="reservation_line" attrs="{'readonly': [('|'),('state', '=', 'invoiced'),('invoice', '=', True)]}">-->
-<!--                                <tree editable="bottom">-->
-<!--                                    <field name="product_id" domain="[('is_book','=',True)]"/>-->
-<!--                                    <field name="default_code"/>-->
-<!--                                    <field name="product_price" widget='monetary'/>-->
-<!--                                    <field name="reservation_id" invisible="1"/>-->
-<!--                                     <field name="currency_id" invisible="1"/>-->
-<!--                                </tree>-->
-<!--                            </field>-->
-<!--                        </page>-->
-<!--                    </notebook>-->
                 </sheet>
-                <!--                <div class="oe_chatter">-->
-                <!--                    <field name="message_follower_ids"/>-->
-                <!--                    <field name="activity_ids"/>-->
-                <!--                    <field name="message_ids"/>-->
-                <!--                </div>-->
             </form>
         </field>
     </record>

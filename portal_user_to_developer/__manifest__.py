@@ -9,7 +9,6 @@
         'security/ir.model.access.csv',
         'static/src/xml/portal_template_inherit.xml',
         'views/res_users.xml',
-        # 'views/portal_view.xml',
         'views/employee_hub.xml',
         'views/portal_time_off.xml',
         'views/time_off_types.xml',
@@ -20,7 +19,6 @@
     'assets': {
         'web.assets_frontend': [
             '/portal_user_to_developer/static/src/js/portal_time_off.js',
-            '/portal_user_to_developer/static/src/js/portal_payslip.js',
             '/portal_user_to_developer/static/src/css/portal.css',
             '/portal_user_to_developer/static/src/css/time_off_request.scss'
         ],
