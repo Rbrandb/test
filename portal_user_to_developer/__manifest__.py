@@ -8,6 +8,7 @@
     'data': [
         'security/ir.model.access.csv',
         'static/src/xml/portal_template_inherit.xml',
+        'data/time_off_cron.xml',
         'views/res_users.xml',
         'views/employee_hub.xml',
         'views/portal_time_off.xml',
@@ -15,7 +16,7 @@
         'static/src/xml/portal_payslip.xml'
     ],
     'demo': [],
-    'depends': ['website', 'portal', 'hr_holidays', 'hr', 'web', 'base', 'portal', 'account_payment', 'hr_payroll'],
+    'depends': ['website', 'portal', 'hr_holidays', 'hr', 'web', 'base', 'portal', 'account_payment', 'hr_payroll', 'documents'],
     'assets': {
         'web.assets_frontend': [
             '/portal_user_to_developer/static/src/js/portal_time_off.js',

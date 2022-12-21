@@ -38,6 +38,8 @@ class EmployeeHub(models.Model):
             'request_date_to': self.request_date_to,
             'number_of_days': self.number_of_days,
             'supported_attachment_ids': [(6, 0, self.attachment.ids)],
+            'date_from': self.request_date_from,
+            'date_to': self.request_date_to
         })
 
         self.hr_bool = True
@@ -56,4 +58,7 @@ class EmployeeHub(models.Model):
         res = super(EmployeeHub, self).create(vals)
         return res
 
-
+    def time_off_cron(self):
+        requests = self.env['portal.time.off'].search([('hr_leave_id', '=', False)])
+        for rec in requests:
+            rec.action_confirm()

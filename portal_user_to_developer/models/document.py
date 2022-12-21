@@ -6,3 +6,6 @@ class DocumentDocumentNew(models.Model):
 
     payslip_date = fields.Date("DateM/Y")
     employee_id = fields.Many2one('hr.employee', 'Employee')
+    id_nr = fields.Integer('ID nr')
+
+

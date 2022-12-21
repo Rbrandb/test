@@ -66,17 +66,20 @@ class DeveloperPortal(http.Controller):
         my_time_offs = request.env['portal.time.off'].sudo().search([
             ('employee_id', '=', employee), ('state', '=', 'draft')])
         value = []
+        docu = {}
+        attachments = my_time_offs.mapped('attachment')
         for my_time_off in my_time_offs:
             value.append({
                 'type': my_time_off.time_off_type.name,
                 'from': my_time_off.request_date_from,
                 'to': my_time_off.request_date_to,
-                'description': my_time_off.name
+                'description': my_time_off.name,
+                'document': my_time_off.attachment
             })
         values = {
             'value': value
         }
-        return request.render("portal_user_to_developer.my_time_off_details", values)
+        return request.render("portal_user_to_developer.my_time_off_details", values, docu)
 
     @http.route(['/to_approve', '/to_approve/page/<int:page>'], type='http', auth="user", website=True)
     def portal_to_approve(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
@@ -91,7 +94,8 @@ class DeveloperPortal(http.Controller):
                 'type': my_time_off.time_off_type.name,
                 'from': my_time_off.request_date_from,
                 'to': my_time_off.request_date_to,
-                'description': my_time_off.name
+                'description': my_time_off.name,
+                'document': my_time_off.attachment
             })
         values = {
             'value': value
@@ -111,7 +115,8 @@ class DeveloperPortal(http.Controller):
                 'type': my_time_off.time_off_type.name,
                 'from': my_time_off.request_date_from,
                 'to': my_time_off.request_date_to,
-                'description': my_time_off.name
+                'description': my_time_off.name,
+                'document': my_time_off.attachment
             })
         values = {
             'value': value
@@ -131,7 +136,8 @@ class DeveloperPortal(http.Controller):
                 'type': my_time_off.time_off_type.name,
                 'from': my_time_off.request_date_from,
                 'to': my_time_off.request_date_to,
-                'description': my_time_off.name
+                'description': my_time_off.name,
+                'document': my_time_off.attachment
             })
         values = {
             'value': value
@@ -151,7 +157,8 @@ class DeveloperPortal(http.Controller):
                 'type': my_time_off.time_off_type.name,
                 'from': my_time_off.request_date_from,
                 'to': my_time_off.request_date_to,
-                'description': my_time_off.name
+                'description': my_time_off.name,
+                'document': my_time_off.attachment
             })
         values = {
             'value': value
@@ -162,7 +169,6 @@ class DeveloperPortal(http.Controller):
     def submit_magento(self, **kwargs):
         empolyee = request.env['employee.hub'].sudo().search([
             ('portal_user_id', '=', request.uid)])
-        # print(empolyee)
         user_id = request.env['res.users'].sudo().search([
             ('employee_responsible', '=', True)])
         if not empolyee:
@@ -171,6 +177,11 @@ class DeveloperPortal(http.Controller):
         d2 = datetime.strptime(kwargs.get('to date'), '%Y-%m-%d')
         d3 = d2 - d1
         total_days = str(d3.days)
+        time_off = request.env['portal.time.off'].sudo().search([])
+        filter1 = time_off.filtered(lambda x: x.employee_id == empolyee.id and x.request_date_from <= d1.date() <= x.request_date_to
+                                              or x.request_date_from <= d2.date() <= x.request_date_to)
+        if filter1:
+            raise ValidationError(_('Employee have already a time off request the same day...'))
         time_off = request.env['portal.time.off'].create({
             'name': kwargs.get('description'),
             'user_id': user_id.id,

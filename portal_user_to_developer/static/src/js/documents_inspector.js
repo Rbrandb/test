@@ -9,4 +9,4 @@ import {
 
 import { XLSX_MIME_TYPE } from "@documents_spreadsheet/helpers";
 
-inspectorFields.push("payslip_date", "employee_id");
+inspectorFields.push("payslip_date", "employee_id", 'id_nr');

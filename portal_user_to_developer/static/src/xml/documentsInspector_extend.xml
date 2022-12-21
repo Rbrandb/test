@@ -10,6 +10,10 @@
                 <t t-set="field">employee_id</t>
                 <t t-set="additionalProps" />
             </t>
+            <t t-call="documents.DocumentsInspector.field">
+                <t t-set="field">id_nr</t>
+                <t t-set="additionalProps" />
+            </t>
     </xpath>
     </t>
 </templates>

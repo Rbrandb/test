@@ -8,5 +8,9 @@ from . import time_off_types
 from . import hr_leave
 from . import ir_attachment
 from . import document
+from . import portal_wizard_inherit
+from . import res_partner
+
+
 
 

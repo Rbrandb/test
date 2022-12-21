@@ -41,25 +41,30 @@ odoo.define('portal_user_to_developer.portal_time_off',function(require){
                     if (key == 'To Submit'){
                        console.log('To SubmitTo Submit')
                        var link = "/to_submit"
+                       var tag = 'Submitted'
                     }
                     if (key == 'To approve'){
                        console.log('To SubmitTo Submit')
                        var link = "/to_approve"
+                       var tag = 'To approve'
                     }
                     if (key == 'Refused'){
                        console.log('To SubmitTo Submit')
                        var link = "/refused"
+                       var tag = 'Refused'
                     }
                     if (key == 'Second Approval'){
                        console.log('To SubmitTo Submit')
                        var link = "/second_approval"
+                       var tag = 'Second Approval'
                     }
                     if (key == 'Approved'){
                        console.log('To SubmitTo Submit')
                        var link = "/approved"
+                       var tag = 'Approved'
                     }
                     self.$('.leaderboard__profiles').append('<div class="leaderboard__profile" id="' + key + '">
-                    <a class="leaderboard__name" href=' + link + '>' + key + '</a>
+                    <a class="leaderboard__name" href=' + link + '>' + tag + '</a>
                     <div class="leaderboard__value">' + value + '</div>')
                });
             });
